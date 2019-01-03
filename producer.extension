@@ -1,0 +1,15 @@
+#!/bin/sh
+
+
+if [[ ! $# -gt 0 ]]
+then
+    echo "Help and usage"
+    echo "$./producer.extension 2016.20 2012-07-08 11:14:15"
+else 
+    sum=$(echo ${#1} + ${#2} + ${#3} + 2 | bc) 
+    (
+    echo "put 0 1 19 $sum"
+    echo "$1 $2 $3"
+    sleep 1
+    ) | telnet 0.0.0.0 11300
+fi
